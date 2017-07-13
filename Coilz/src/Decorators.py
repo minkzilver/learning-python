@@ -33,3 +33,33 @@ def Num(num):
 
 
 print(Num(4))
+
+# --------------------------------
+
+
+def type_check(correct_type):
+    def type_checker(old_function):
+        def new_function(arg):
+            if not type(arg) is correct_type:
+                print("Invalid type")
+            old_function(arg)
+        return new_function
+    return type_checker
+
+
+@type_check(int)
+def times2(num):
+    return num*2
+
+
+times2(2)
+times2('Not A Number')
+
+
+@type_check(str)
+def first_letter(word):
+    return word[0]
+
+
+first_letter('Hello World')
+first_letter(['Not', 'A', 'String'])
