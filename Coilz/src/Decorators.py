@@ -42,7 +42,7 @@ def type_check(correct_type):
         def new_function(arg):
             if not type(arg) is correct_type:
                 print("Invalid type")
-            old_function(arg)
+            return old_function(arg)
         return new_function
     return type_checker
 
