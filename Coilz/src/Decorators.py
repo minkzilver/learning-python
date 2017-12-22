@@ -1,17 +1,24 @@
-def Double_Out(old_function):
+"Decorator learnings"
+
+def double_out(old_function):
+    "Decorator that doubles the result"
     def new_function(*args, **kwds):
+        "Doubles the result of the original function"
         return 2*old_function(*args, **kwds)  # modify the return value
     return new_function
 
-
-def Double_In(old_function):
+def double_in(old_function):
+    "Decorator that doubles the provided argument"
     def new_function(arg):  # only works if the old function has one argument
+        "Doubles the provided argument"
         return old_function(arg*2)  # modify the argument passed
     return new_function
 
 
-def Check(old_function):
+def check(old_function):
+    "Decorator that checks for positive numbers"
     def new_function(arg):
+    "Checks for positive numbers"
         # This causes an error, which is better than it doing the wrong thing
         if arg < 0:
             raise ValueError("Negative value")
@@ -19,15 +26,15 @@ def Check(old_function):
     return new_function
 
 
-def Multiply(multiplier):
-    def Multiply_Generator(old_function):
+def multiply(multiplier):
+    def multiply_generator(old_function):
         def new_function(*args, **kwds):
             return multiplier*old_function(*args, **kwds)
         return new_function
-    return Multiply_Generator  # it returns the new generator
+    return multiply_generator  # it returns the new generator
 
 
-@Multiply(3)  # Multiply is not a generator, but Multiply(3) is
+@multiply(3)  # Multiply is not a generator, but Multiply(3) is
 def Num(num):
     return num
 

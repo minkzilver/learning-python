@@ -1,3 +1,5 @@
+"Closure learnings"
+
 def transmit_to_space(message):
     "This is the enclosing function"
     def data_transmitter():
@@ -10,7 +12,7 @@ def transmit_to_space(message):
 transmit_to_space("Test message 1")
 
 
-def transmit_to_space(message):
+def return_from_space(message):
     "This is the enclosing function"
     def data_transmitter():
         "The nested function"
@@ -19,13 +21,15 @@ def transmit_to_space(message):
     return data_transmitter
 
 
-message = transmit_to_space("Test message 2")
-message()
-message()
+transmit = return_from_space("Test message 2")
+transmit()
+transmit()
 
 
 def multiplier_of(a):
+    "This is the enclosing function"
     def multiply(b):
+        "The nested function"
         return a*b
 
     return multiply
